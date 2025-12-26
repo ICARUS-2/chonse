@@ -60,7 +60,7 @@ export default function NavBar({ darkMode, switchDarkMode }: Props) {
           </IconButton>
 
           <Image
-            src="/favicon-32x32.png"
+            src="favicon-32x32.png"
             alt="Chesskit logo"
             width={32}
             height={32}

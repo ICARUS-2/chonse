@@ -62,7 +62,7 @@ export default function MoveInfo() {
       {moveClassification && (
         <Stack direction="row" alignItems="center" spacing={1}>
           <Image
-            src={`/icons/${moveClassification}.png`}
+            src={`icons/${moveClassification}.png`}
             alt="move-icon"
             width={16}
             height={16}
@@ -88,7 +88,7 @@ export default function MoveInfo() {
       {showBestMoveLabel && (
         <Stack direction="row" alignItems="center" spacing={1}>
           <Image
-            src={"/icons/best.png"}
+            src={"icons/best.png"}
             alt="move-icon"
             width={16}
             height={16}

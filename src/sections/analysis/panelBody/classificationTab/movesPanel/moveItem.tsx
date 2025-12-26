@@ -73,7 +73,7 @@ export default function MoveItem({
     >
       {color && (
         <Image
-          src={`/icons/${moveClassification}.png`}
+          src={`icons/${moveClassification}.png`}
           alt="move-icon"
           width={14}
           height={14}

@@ -68,7 +68,7 @@ export function getSquareRenderer({
           {playableSquareStyle && <div style={playableSquareStyle} />}
           {moveClassification && showPlayerMoveIcon && square === toSquare && (
             <Image
-              src={`/icons/${moveClassification}.png`}
+              src={`icons/${moveClassification}.png`}
               alt="move-icon"
               width={Math.min(40, boardSize * 0.06)}
               height={Math.min(40, boardSize * 0.06)}
