@@ -4,6 +4,8 @@ import { PHASE_PRODUCTION_BUILD } from "next/constants";
 
 const nextConfig = (phase: string): NextConfig => ({
   output: phase === PHASE_PRODUCTION_BUILD ? "export" : undefined,
+  basePath: "/Chesskit",
+  assetPrefix: "/Chesskit",
   trailingSlash: false,
   reactStrictMode: true,
   images: {
