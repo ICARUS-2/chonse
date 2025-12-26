@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = (phase: string): NextConfig => ({
   output: "export",
   basePath: isProd ? '/Chesskit' : "",
-  assetPrefix: isProd? '/Chesskit/' : "",
+  assetPrefix: isProd? '/Chesskit' : "",
   reactStrictMode: true,
   trailingSlash: true,
   images: {
