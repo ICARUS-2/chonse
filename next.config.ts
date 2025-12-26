@@ -8,6 +8,7 @@ const nextConfig = (phase: string): NextConfig => ({
   basePath: isProd ? '/Chesskit' : "",
   assetPrefix: isProd? '/Chesskit/' : "",
   reactStrictMode: true,
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
