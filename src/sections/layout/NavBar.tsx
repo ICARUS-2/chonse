@@ -79,18 +79,6 @@ export default function NavBar({ darkMode, switchDarkMode }: Props) {
               CHONSE
             </Typography>
           </NavLink>
-          
-          {/*
-          <StyledIconButtonLink
-            href="https://discord.gg/Yr99abAcUr"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <IconButton color="inherit" component="span">
-              <Icon icon="ri:discord-fill" />
-            </IconButton>
-          </StyledIconButtonLink>
-          */}
 
           <StyledIconButtonLink
             href="https://github.com/ICARUS-2/Chesskit"
