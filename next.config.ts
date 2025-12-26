@@ -5,9 +5,8 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = (phase: string): NextConfig => ({
   output: "export",
-  trailingSlash: true,
-  basePath: isProd ? 'https://icarus-2.github.io/Chesskit' : "",
-  assetPrefix: isProd? 'https://icarus-2.github.io/Chesskit' : "",
+  basePath: isProd ? '/Chesskit' : "",
+  assetPrefix: isProd? '/Chesskit/' : "",
   reactStrictMode: true,
   images: {
     unoptimized: true,
