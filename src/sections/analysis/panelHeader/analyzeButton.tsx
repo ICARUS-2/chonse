@@ -117,7 +117,7 @@ export default function AnalyzeButton() {
   return (
     <LoadingButton
       variant="contained"
-      size="small"
+      size="medium"
       startIcon={<Icon icon="streamline:magnifying-glass-solid" height={12} />}
       onClick={handleAnalyze}
       disabled={!readyToAnalyse}

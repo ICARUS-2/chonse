@@ -39,9 +39,9 @@ export default function GoToLastPositionButton() {
             setBoardPgn(game.pgn());
           }}
           disabled={isButtonDisabled}
-          sx={{ paddingX: 1.2, paddingY: 0.5 }}
+          sx={{ paddingX: 2.5, paddingY: 0.5 }}
         >
-          <Icon icon="ri:skip-forward-line" />
+          <Icon icon="ri:skip-forward-line" height={50}/>
         </IconButton>
       </Grid>
     </Tooltip>

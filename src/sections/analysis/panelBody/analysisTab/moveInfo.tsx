@@ -114,7 +114,7 @@ export default function MoveInfo() {
 const moveClassificationLabels: Record<MoveClassification, string> = {
   [MoveClassification.Opening]: "an opening move",
   [MoveClassification.Forced]: "forced",
-  [MoveClassification.Splendid]: "splendid !!",
+  [MoveClassification.Splendid]: "LUMINOUS 🌕!!!",
   [MoveClassification.Perfect]: "the only good move !",
   [MoveClassification.Best]: "the best move",
   [MoveClassification.Excellent]: "excellent",

@@ -91,7 +91,7 @@ export default function LoadGame() {
   return (
     <LoadGameButton
       label={isGameLoaded ? "Load another game" : "Load game"}
-      size="small"
+      size="medium"
       setGame={async (game) => {
         await router.replace(
           {
