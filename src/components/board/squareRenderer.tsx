@@ -14,6 +14,7 @@ import { boardHueAtom } from "./states";
 import { boardAtom } from "@/sections/analysis/states";
 import { Piece } from "react-chessboard/dist/chessboard/types";
 import { Color } from "@/types/enums";
+import EndIcon from "./endIcon";
 
 
 export interface Props {
@@ -96,62 +97,18 @@ export function getSquareRenderer({
 
           {/*Renders white king corresponding icon in the event of checkmate*/}
           {board.isCheckmate() && square === whiteKing && (
-            <>
-              {/*background layer */}
-              <div
-                className="fade-out-bg"
-                style={{
-                  position: "absolute",
-                  inset: 0,              // fills the entire square
-                  backgroundColor: loser == Color.Black ? `limegreen` : `rgb(255,0,0)`,
-                  zIndex: 90,
-                  opacity: 0.6,
-                }}
-              />
-
-              {/* Checkmate icon */}
-              <Image 
-                className="move-up-right-shrink"
-                src={loser === Color.White ? "icons/checkmate.webp" : "icons/winner.webp"}
-                alt="Checkmate"
-                width={boardSize / 8}
-                height={boardSize / 8}
-                style={{
-                  position: "absolute",
-                  zIndex: 100
-                }}
-              />
-            </>
+            <EndIcon 
+              iconSrc={loser === Color.White ? "icons/checkmate.webp" : "icons/winner.webp"} 
+              backgroundColor={loser === Color.White ? "red" : "limegreen"} 
+              boardSize={boardSize} />
           )}
 
           {/*Renders black king corresponding icon in the event of checkmate*/}
           {board.isCheckmate() && square === blackKing && (
-            <>
-              {/*background layer */}
-              <div
-              className="fade-out-bg"
-                style={{
-                  position: "absolute",
-                  inset: 0,              // fills the entire square
-                  backgroundColor: loser == Color.White ? `limegreen` : `rgb(255,0,0)`,
-                  zIndex: 90,
-                  opacity: 0.6
-                }}
-              />
-
-              {/* Checkmate icon */}
-              <Image 
-              className="move-up-right-shrink"
-                src={loser === Color.Black ? "icons/checkmate.webp" : "icons/winner.webp"}
-                alt="Checkmate"
-                width={boardSize / 8}
-                height={boardSize / 8}
-                style={{
-                  position: "absolute",
-                  zIndex: 100
-                }}
-              />
-            </>
+            <EndIcon 
+              iconSrc={loser === Color.Black ? "icons/checkmate.webp" : "icons/winner.webp"} 
+              backgroundColor={loser === Color.Black ? "red" : "limegreen"} 
+              boardSize={boardSize} />
           )}
         </div>
       );
