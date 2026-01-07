@@ -10,6 +10,12 @@ import {
 import { CLASSIFICATION_COLORS } from "@/constants";
 import { boardHueAtom } from "./states";
 
+//For game end markers
+import { boardAtom } from "@/sections/analysis/states";
+import { Piece } from "react-chessboard/dist/chessboard/types";
+import { Color } from "@/types/enums";
+
+
 export interface Props {
   currentPositionAtom: PrimitiveAtom<CurrentPosition>;
   clickedSquaresAtom: PrimitiveAtom<Square[]>;
@@ -38,6 +44,8 @@ export function getSquareRenderer({
       const toSquare = position.lastMove?.to;
       const moveClassification = position?.eval?.moveClassification;
 
+      const board = useAtomValue(boardAtom);
+
       const highlightSquareStyle: CSSProperties | undefined = useMemo(
         () =>
           clickedSquares.includes(square)
@@ -54,13 +62,17 @@ export function getSquareRenderer({
         [playableSquares, square]
       );
 
+      let whiteKing: Square = board.findPiece({color: "w", type: "k"})[0];
+      let blackKing: Square = board.findPiece({color: "b", type: "k"})[0];
+      let loser = board.turn();
+
       return (
         <div
           ref={ref}
           style={{
             ...style,
             position: "relative",
-            filter: boardHue ? `hue-rotate(-${boardHue}deg)` : undefined,
+            filter: boardHue ? `hue-rotate(-${boardHue}deg)` : undefined
           }}
         >
           {children}
@@ -79,6 +91,67 @@ export function getSquareRenderer({
                 zIndex: 100,
               }}
             />
+          )}
+
+
+          {/*Renders white king corresponding icon in the event of checkmate*/}
+          {board.isCheckmate() && square === whiteKing && (
+            <>
+              {/*background layer */}
+              <div
+                className="fade-out-bg"
+                style={{
+                  position: "absolute",
+                  inset: 0,              // fills the entire square
+                  backgroundColor: loser == Color.Black ? `limegreen` : `rgb(255,0,0)`,
+                  zIndex: 90,
+                  opacity: 0.6,
+                }}
+              />
+
+              {/* Checkmate icon */}
+              <Image 
+                className="move-up-right-shrink"
+                src={loser === Color.White ? "icons/checkmate.webp" : "icons/winner.webp"}
+                alt="Checkmate"
+                width={boardSize / 8}
+                height={boardSize / 8}
+                style={{
+                  position: "absolute",
+                  zIndex: 100
+                }}
+              />
+            </>
+          )}
+
+          {/*Renders black king corresponding icon in the event of checkmate*/}
+          {board.isCheckmate() && square === blackKing && (
+            <>
+              {/*background layer */}
+              <div
+              className="fade-out-bg"
+                style={{
+                  position: "absolute",
+                  inset: 0,              // fills the entire square
+                  backgroundColor: loser == Color.White ? `limegreen` : `rgb(255,0,0)`,
+                  zIndex: 90,
+                  opacity: 0.6
+                }}
+              />
+
+              {/* Checkmate icon */}
+              <Image 
+              className="move-up-right-shrink"
+                src={loser === Color.Black ? "icons/checkmate.webp" : "icons/winner.webp"}
+                alt="Checkmate"
+                width={boardSize / 8}
+                height={boardSize / 8}
+                style={{
+                  position: "absolute",
+                  zIndex: 100
+                }}
+              />
+            </>
           )}
         </div>
       );
