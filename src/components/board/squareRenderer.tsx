@@ -110,6 +110,15 @@ export function getSquareRenderer({
               backgroundColor={loser === Color.Black ? "red" : "limegreen"} 
               boardSize={boardSize} />
           )}
+
+          {/*Renders kings corresponding icon in the event of a draw*/}
+          {board.isDraw() && (square === blackKing || square === whiteKing) &&
+            <EndIcon 
+              iconSrc="icons/draw.webp"
+              backgroundColor="skyblue"
+              boardSize={boardSize}
+            />
+          }
         </div>
       );
     }
