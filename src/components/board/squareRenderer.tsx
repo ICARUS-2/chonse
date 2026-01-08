@@ -11,7 +11,7 @@ import { CLASSIFICATION_COLORS } from "@/constants";
 import { boardHueAtom } from "./states";
 
 //For game end markers
-import { boardAtom, gameAtom } from "@/sections/analysis/states";
+import { boardAtom } from "@/sections/analysis/states";
 import { Color } from "@/types/enums";
 import EndIcon from "./endIcon";
 
@@ -62,8 +62,8 @@ export function getSquareRenderer({
         [playableSquares, square]
       );
 
-      let whiteKing: Square = board.findPiece({color: "w", type: "k"})[0];
-      let blackKing: Square = board.findPiece({color: "b", type: "k"})[0];
+      const whiteKing: Square = board.findPiece({color: "w", type: "k"})[0];
+      const blackKing: Square = board.findPiece({color: "b", type: "k"})[0];
 
       return (
         <div
