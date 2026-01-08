@@ -79,7 +79,7 @@ export function getSquareRenderer({
           {playableSquareStyle && <div style={playableSquareStyle} />}
           {moveClassification && showPlayerMoveIcon && square === toSquare && (
             <Image
-              src={`/icons/${moveClassification}.png`}
+              src={`icons/${moveClassification}.png`}
               alt="move-icon"
               width={Math.min(40, boardSize * 0.06)}
               height={Math.min(40, boardSize * 0.06)}
@@ -95,7 +95,7 @@ export function getSquareRenderer({
           {/*Renders white king corresponding icon in the event of checkmate*/}
           {board.isCheckmate() && square === whiteKing && (
             <EndIcon 
-              iconSrc={board.turn() === Color.White ? "/icons/checkmate.webp" : "/icons/winner.webp"} 
+              iconSrc={board.turn() === Color.White ? "icons/checkmate.webp" : "icons/winner.webp"} 
               backgroundColor={board.turn() === Color.White ? "red" : "limegreen"} 
               boardSize={boardSize} />
           )}
@@ -103,7 +103,7 @@ export function getSquareRenderer({
           {/*Renders black king corresponding icon in the event of checkmate*/}
           {board.isCheckmate() && square === blackKing && (
             <EndIcon 
-              iconSrc={board.turn() === Color.Black ? "/icons/checkmate.webp" : "/icons/winner.webp"} 
+              iconSrc={board.turn() === Color.Black ? "icons/checkmate.webp" : "icons/winner.webp"} 
               backgroundColor={board.turn() === Color.Black ? "red" : "limegreen"} 
               boardSize={boardSize} />
           )}
@@ -111,7 +111,7 @@ export function getSquareRenderer({
           {/*Renders kings corresponding icon in the event of a draw*/}
           {board.isDraw() && (square === blackKing || square === whiteKing) &&
             <EndIcon 
-              iconSrc="/icons/draw.webp"
+              iconSrc="icons/draw.webp"
               backgroundColor="skyblue"
               boardSize={boardSize}
             />
