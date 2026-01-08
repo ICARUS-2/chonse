@@ -11,8 +11,7 @@ import { CLASSIFICATION_COLORS } from "@/constants";
 import { boardHueAtom } from "./states";
 
 //For game end markers
-import { boardAtom } from "@/sections/analysis/states";
-import { Piece } from "react-chessboard/dist/chessboard/types";
+import { boardAtom, gameAtom } from "@/sections/analysis/states";
 import { Color } from "@/types/enums";
 import EndIcon from "./endIcon";
 
@@ -46,7 +45,7 @@ export function getSquareRenderer({
       const moveClassification = position?.eval?.moveClassification;
 
       const board = useAtomValue(boardAtom);
-
+      const game = useAtomValue(gameAtom);
       const highlightSquareStyle: CSSProperties | undefined = useMemo(
         () =>
           clickedSquares.includes(square)
@@ -65,7 +64,14 @@ export function getSquareRenderer({
 
       let whiteKing: Square = board.findPiece({color: "w", type: "k"})[0];
       let blackKing: Square = board.findPiece({color: "b", type: "k"})[0];
-      let loser = board.turn();
+      
+      let termination = board.getHeaders()["Termination"];
+      let whiteName = board.getHeaders()["White"];
+      let blackName = board.getHeaders()["Black"];
+
+      let blackResigned = termination ? termination.split(' ')[0] === whiteName && termination.includes("by resignation") : false;
+      let whiteResigned = termination ? termination.split(' ')[0] === blackName && termination.includes("by resignation") : false;
+      let isGameOver = game.isGameOver();
 
       return (
         <div
@@ -81,7 +87,7 @@ export function getSquareRenderer({
           {playableSquareStyle && <div style={playableSquareStyle} />}
           {moveClassification && showPlayerMoveIcon && square === toSquare && (
             <Image
-              src={`icons/${moveClassification}.png`}
+              src={`/icons/${moveClassification}.png`}
               alt="move-icon"
               width={Math.min(40, boardSize * 0.06)}
               height={Math.min(40, boardSize * 0.06)}
@@ -94,31 +100,46 @@ export function getSquareRenderer({
             />
           )}
 
-
           {/*Renders white king corresponding icon in the event of checkmate*/}
           {board.isCheckmate() && square === whiteKing && (
             <EndIcon 
-              iconSrc={loser === Color.White ? "icons/checkmate.webp" : "icons/winner.webp"} 
-              backgroundColor={loser === Color.White ? "red" : "limegreen"} 
+              iconSrc={board.turn() === Color.White ? "/icons/checkmate.webp" : "/icons/winner.webp"} 
+              backgroundColor={board.turn() === Color.White ? "red" : "limegreen"} 
               boardSize={boardSize} />
           )}
 
           {/*Renders black king corresponding icon in the event of checkmate*/}
           {board.isCheckmate() && square === blackKing && (
             <EndIcon 
-              iconSrc={loser === Color.Black ? "icons/checkmate.webp" : "icons/winner.webp"} 
-              backgroundColor={loser === Color.Black ? "red" : "limegreen"} 
+              iconSrc={board.turn() === Color.Black ? "/icons/checkmate.webp" : "/icons/winner.webp"} 
+              backgroundColor={board.turn() === Color.Black ? "red" : "limegreen"} 
               boardSize={boardSize} />
           )}
 
           {/*Renders kings corresponding icon in the event of a draw*/}
           {board.isDraw() && (square === blackKing || square === whiteKing) &&
             <EndIcon 
-              iconSrc="icons/draw.webp"
+              iconSrc="/icons/draw.webp"
               backgroundColor="skyblue"
               boardSize={boardSize}
             />
           }
+
+          {/*Renders white king corresponding icon in the event of resignation*/}
+          {game.isGameOver() && square === whiteKing && (whiteResigned === true || blackResigned === true) && (
+            <EndIcon 
+              iconSrc={whiteResigned ? "/icons/resign.webp" : "/icons/winner.webp"} 
+              backgroundColor={whiteResigned ? "red" : "limegreen"} 
+              boardSize={boardSize} />
+          )}
+
+          {/*Renders black king corresponding icon in the event of checkmate*/}
+          {game.isGameOver() && square === blackKing && (whiteResigned === true || blackResigned === true) && (
+            <EndIcon 
+              iconSrc={blackResigned ? "/icons/resign.webp" : "/icons/winner.webp"} 
+              backgroundColor={blackResigned ? "red" : "limegreen"} 
+              boardSize={boardSize} />
+          )}
         </div>
       );
     }

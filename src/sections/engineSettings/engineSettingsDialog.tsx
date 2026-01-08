@@ -191,7 +191,7 @@ export default function EngineSettingsDialog({ open, onClose }: Props) {
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Image
                         loading="lazy"
-                        src={`piece/${name}/${isDarkMode ? "w" : "b"}N.svg`}
+                        src={`/piece/${name}/${isDarkMode ? "w" : "b"}N.svg`}
                         alt={`${name} knight`}
                         width={24}
                         height={24}
