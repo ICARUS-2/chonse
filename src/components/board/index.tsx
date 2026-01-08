@@ -22,6 +22,8 @@ import PlayerHeader from "./playerHeader";
 import { boardHueAtom, pieceSetAtom } from "./states";
 import tinycolor from "tinycolor2";
 
+import { BASE_PATH } from "@/globals";
+
 export interface Props {
   id: string;
   canPlay?: Color | boolean;
@@ -257,7 +259,7 @@ export default function Board({
             width={squareWidth}
             height={squareWidth}
             sx={{
-              backgroundImage: `url(piece/${pieceSet}/${piece}.svg)`,
+              backgroundImage: `url(${BASE_PATH}/piece/${pieceSet}/${piece}.svg)`,
               backgroundSize: "contain",
             }}
           />

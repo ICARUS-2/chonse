@@ -1,3 +1,4 @@
+import { BASE_PATH } from "@/globals";
 import { getCapturedPieces, getMaterialDifference } from "@/lib/chess";
 import { Color } from "@/types/enums";
 import { Box, Grid2 as Grid, Stack, Typography } from "@mui/material";
@@ -66,7 +67,7 @@ const getCapturedPiecesComponents = (
           width={`${2 * PIECE_SCALE}rem`}
           height={`${2 * PIECE_SCALE}rem`}
           sx={{
-            backgroundImage: `url(piece/cardinal/${pieceSymbol}.svg)`,
+            backgroundImage: `url(${BASE_PATH}piece/cardinal/${pieceSymbol}.svg)`,
             backgroundRepeat: "no-repeat",
           }}
         />

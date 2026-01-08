@@ -3,6 +3,7 @@ import { UciEngine } from "./uciEngine";
 import { isMultiThreadSupported, isWasmSupported } from "./shared";
 import { sendCommandsToWorker } from "./worker";
 import { EngineWorker } from "@/types/engine";
+import { BASE_PATH } from "@/globals";
 
 export class Stockfish16 {
   public static async create(nnue?: boolean): Promise<UciEngine> {
@@ -14,8 +15,8 @@ export class Stockfish16 {
     if (!multiThreadIsSupported) console.log("Single thread mode");
 
     const enginePath = multiThreadIsSupported
-      ? "engines/stockfish-16/stockfish-nnue-16.js"
-      : "engines/stockfish-16/stockfish-nnue-16-single.js";
+      ? `${BASE_PATH}/engines/stockfish-16/stockfish-nnue-16.js`
+      : `${BASE_PATH}/engines/stockfish-16/stockfish-nnue-16-single.js`;
 
     const customEngineInit = async (worker: EngineWorker) => {
       await sendCommandsToWorker(

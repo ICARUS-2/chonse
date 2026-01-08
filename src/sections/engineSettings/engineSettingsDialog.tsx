@@ -37,6 +37,7 @@ import {
   STRONGEST_ENGINE,
 } from "@/constants";
 import { getRecommendedWorkersNb } from "@/lib/engine/worker";
+import { BASE_PATH } from "@/globals";
 
 interface Props {
   open: boolean;
@@ -191,7 +192,7 @@ export default function EngineSettingsDialog({ open, onClose }: Props) {
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Image
                         loading="lazy"
-                        src={`piece/${name}/${isDarkMode ? "w" : "b"}N.svg`}
+                        src={`${BASE_PATH}/piece/${name}/${isDarkMode ? "w" : "b"}N.svg`}
                         alt={`${name} knight`}
                         width={24}
                         height={24}

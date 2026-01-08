@@ -6,6 +6,7 @@ import { moveLineUciToSan } from "@/lib/chess";
 import { MoveClassification } from "@/types/enums";
 import Image from "next/image";
 import PrettyMoveSan from "@/components/prettyMoveSan";
+import { BASE_PATH } from "@/globals";
 
 export default function MoveInfo() {
   const position = useAtomValue(currentPositionAtom);
@@ -62,7 +63,7 @@ export default function MoveInfo() {
       {moveClassification && (
         <Stack direction="row" alignItems="center" spacing={1}>
           <Image
-            src={`icons/${moveClassification}.png`}
+            src={`${BASE_PATH}/icons/${moveClassification}.png`}
             alt="move-icon"
             width={16}
             height={16}
@@ -88,7 +89,7 @@ export default function MoveInfo() {
       {showBestMoveLabel && (
         <Stack direction="row" alignItems="center" spacing={1}>
           <Image
-            src={"icons/best.png"}
+            src={`${BASE_PATH}/icons/best.png`}
             alt="move-icon"
             width={16}
             height={16}
