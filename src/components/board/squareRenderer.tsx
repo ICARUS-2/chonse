@@ -45,7 +45,7 @@ export function getSquareRenderer({
       const moveClassification = position?.eval?.moveClassification;
 
       const board = useAtomValue(boardAtom);
-      const game = useAtomValue(gameAtom);
+
       const highlightSquareStyle: CSSProperties | undefined = useMemo(
         () =>
           clickedSquares.includes(square)
@@ -64,14 +64,6 @@ export function getSquareRenderer({
 
       let whiteKing: Square = board.findPiece({color: "w", type: "k"})[0];
       let blackKing: Square = board.findPiece({color: "b", type: "k"})[0];
-      
-      let termination = board.getHeaders()["Termination"];
-      let whiteName = board.getHeaders()["White"];
-      let blackName = board.getHeaders()["Black"];
-
-      let blackResigned = termination ? termination.split(' ')[0] === whiteName && termination.includes("by resignation") : false;
-      let whiteResigned = termination ? termination.split(' ')[0] === blackName && termination.includes("by resignation") : false;
-      let isGameOver = game.isGameOver();
 
       return (
         <div
@@ -124,22 +116,6 @@ export function getSquareRenderer({
               boardSize={boardSize}
             />
           }
-
-          {/*Renders white king corresponding icon in the event of resignation*/}
-          {game.isGameOver() && square === whiteKing && (whiteResigned === true || blackResigned === true) && (
-            <EndIcon 
-              iconSrc={whiteResigned ? "/icons/resign.webp" : "/icons/winner.webp"} 
-              backgroundColor={whiteResigned ? "red" : "limegreen"} 
-              boardSize={boardSize} />
-          )}
-
-          {/*Renders black king corresponding icon in the event of checkmate*/}
-          {game.isGameOver() && square === blackKing && (whiteResigned === true || blackResigned === true) && (
-            <EndIcon 
-              iconSrc={blackResigned ? "/icons/resign.webp" : "/icons/winner.webp"} 
-              backgroundColor={blackResigned ? "red" : "limegreen"} 
-              boardSize={boardSize} />
-          )}
         </div>
       );
     }
