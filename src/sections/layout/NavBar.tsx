@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import NavLink from "@/components/NavLink";
 import Image from "next/image";
 import { styled } from "@mui/material/styles";
+import { BASE_PATH } from "@/globals";
 
 interface Props {
   darkMode: boolean;
@@ -60,7 +61,7 @@ export default function NavBar({ darkMode, switchDarkMode }: Props) {
           </IconButton>
 
           <Image
-            src="favicon-32x32.png"
+            src={`${BASE_PATH}/favicon-32x32.png`}
             alt="DA3DALU5 SYSTEMS LOGO"
             width={32}
             height={32}
