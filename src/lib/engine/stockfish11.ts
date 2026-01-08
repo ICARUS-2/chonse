@@ -1,9 +1,10 @@
 import { EngineName } from "@/types/enums";
 import { UciEngine } from "./uciEngine";
+import { BASE_PATH } from "@/globals";
 
 export class Stockfish11 {
   public static async create(): Promise<UciEngine> {
-    const enginePath = "engines/stockfish-11.js";
+    const enginePath = `${BASE_PATH}/engines/stockfish-11.js`;
 
     return UciEngine.create(EngineName.Stockfish11, enginePath);
   }

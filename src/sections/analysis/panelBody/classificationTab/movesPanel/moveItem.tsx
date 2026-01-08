@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { isInViewport } from "@/lib/helpers";
 import { CLASSIFICATION_COLORS } from "@/constants";
 import PrettyMoveSan from "@/components/prettyMoveSan";
+import { BASE_PATH } from "@/globals";
 
 interface Props {
   san: string;
@@ -73,7 +74,7 @@ export default function MoveItem({
     >
       {color && (
         <Image
-          src={`icons/${moveClassification}.png`}
+          src={`${BASE_PATH}/icons/${moveClassification}.png`}
           alt="move-icon"
           width={14}
           height={14}

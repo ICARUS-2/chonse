@@ -7,6 +7,7 @@ import Image from "next/image";
 import { capitalize } from "@/lib/helpers";
 import { useChessActions } from "@/hooks/useChessActions";
 import { CLASSIFICATION_COLORS } from "@/constants";
+import { BASE_PATH } from "@/globals";
 
 interface Props {
   classification: MoveClassification;
@@ -98,7 +99,7 @@ export default function ClassificationRow({ classification }: Props) {
         wrap="nowrap"
       >
         <Image
-          src={`icons/${classification}.png`}
+          src={`${BASE_PATH}/icons/${classification}.png`}
           alt="move-icon"
           width={18}
           height={18}

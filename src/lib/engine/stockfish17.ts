@@ -1,6 +1,7 @@
 import { EngineName } from "@/types/enums";
 import { UciEngine } from "./uciEngine";
 import { isMultiThreadSupported, isWasmSupported } from "./shared";
+import { BASE_PATH } from "@/globals";
 
 export class Stockfish17 {
   public static async create(lite?: boolean): Promise<UciEngine> {
@@ -11,7 +12,7 @@ export class Stockfish17 {
     const multiThreadIsSupported = isMultiThreadSupported();
     if (!multiThreadIsSupported) console.log("Single thread mode");
 
-    const enginePath = `engines/stockfish-17/stockfish-17${
+    const enginePath = `${BASE_PATH}/engines/stockfish-17/stockfish-17${
       lite ? "-lite" : ""
     }${multiThreadIsSupported ? "" : "-single"}.js`;
 

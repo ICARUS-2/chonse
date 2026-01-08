@@ -1,16 +1,19 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import { NextConfig } from "next";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
-const isProd = process.env.NODE_ENV === 'production'; 
+import { BASE_PATH } from "@/globals";
 
 const nextConfig = (phase: string): NextConfig => ({
   output: "export",
-  basePath: isProd ? '/chonse' : "",
-  assetPrefix: isProd? '/chonse' : "",
+  basePath: '/chonse',
+  assetPrefix: BASE_PATH,
   reactStrictMode: true,
   trailingSlash: true,
   images: {
     unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: "/chonse",
   },
   headers:
     phase === PHASE_PRODUCTION_BUILD
