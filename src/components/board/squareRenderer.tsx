@@ -10,6 +10,12 @@ import {
 import { CLASSIFICATION_COLORS } from "@/constants";
 import { boardHueAtom } from "./states";
 
+//For game end markers
+import { boardAtom } from "@/sections/analysis/states";
+import { Color } from "@/types/enums";
+import EndIcon from "./endIcon";
+
+
 export interface Props {
   currentPositionAtom: PrimitiveAtom<CurrentPosition>;
   clickedSquaresAtom: PrimitiveAtom<Square[]>;
@@ -38,6 +44,8 @@ export function getSquareRenderer({
       const toSquare = position.lastMove?.to;
       const moveClassification = position?.eval?.moveClassification;
 
+      const board = useAtomValue(boardAtom);
+
       const highlightSquareStyle: CSSProperties | undefined = useMemo(
         () =>
           clickedSquares.includes(square)
@@ -54,13 +62,16 @@ export function getSquareRenderer({
         [playableSquares, square]
       );
 
+      const whiteKing: Square = board.findPiece({color: "w", type: "k"})[0];
+      const blackKing: Square = board.findPiece({color: "b", type: "k"})[0];
+
       return (
         <div
           ref={ref}
           style={{
             ...style,
             position: "relative",
-            filter: boardHue ? `hue-rotate(-${boardHue}deg)` : undefined,
+            filter: boardHue ? `hue-rotate(-${boardHue}deg)` : undefined
           }}
         >
           {children}
@@ -68,7 +79,7 @@ export function getSquareRenderer({
           {playableSquareStyle && <div style={playableSquareStyle} />}
           {moveClassification && showPlayerMoveIcon && square === toSquare && (
             <Image
-              src={`icons/${moveClassification}.png`}
+              src={`/icons/${moveClassification}.png`}
               alt="move-icon"
               width={Math.min(40, boardSize * 0.06)}
               height={Math.min(40, boardSize * 0.06)}
@@ -80,6 +91,31 @@ export function getSquareRenderer({
               }}
             />
           )}
+
+          {/*Renders white king corresponding icon in the event of checkmate*/}
+          {board.isCheckmate() && square === whiteKing && (
+            <EndIcon 
+              iconSrc={board.turn() === Color.White ? "/icons/checkmate.webp" : "/icons/winner.webp"} 
+              backgroundColor={board.turn() === Color.White ? "red" : "limegreen"} 
+              boardSize={boardSize} />
+          )}
+
+          {/*Renders black king corresponding icon in the event of checkmate*/}
+          {board.isCheckmate() && square === blackKing && (
+            <EndIcon 
+              iconSrc={board.turn() === Color.Black ? "/icons/checkmate.webp" : "/icons/winner.webp"} 
+              backgroundColor={board.turn() === Color.Black ? "red" : "limegreen"} 
+              boardSize={boardSize} />
+          )}
+
+          {/*Renders kings corresponding icon in the event of a draw*/}
+          {board.isDraw() && (square === blackKing || square === whiteKing) &&
+            <EndIcon 
+              iconSrc="/icons/draw.webp"
+              backgroundColor="skyblue"
+              boardSize={boardSize}
+            />
+          }
         </div>
       );
     }
