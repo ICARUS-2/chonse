@@ -67,7 +67,7 @@ const getCapturedPiecesComponents = (
           width={`${2 * PIECE_SCALE}rem`}
           height={`${2 * PIECE_SCALE}rem`}
           sx={{
-            backgroundImage: `url(${BASE_PATH}piece/cardinal/${pieceSymbol}.svg)`,
+            backgroundImage: `url(${BASE_PATH}/piece/cardinal/${pieceSymbol}.svg)`,
             backgroundRepeat: "no-repeat",
           }}
         />
