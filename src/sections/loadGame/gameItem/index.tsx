@@ -5,12 +5,16 @@ import {
   Typography,
   Box,
   useTheme,
+  Button,
 } from "@mui/material";
 import { LoadedGame } from "@/types/game";
 import TimeControlChip from "./timeControlChip";
 import MovesNbChip from "./movesNbChip";
 import DateChip from "./dateChip";
 import GameResultChip from "./gameResultChip";
+import { GameOrigin } from "@/types/enums";
+import GameLinkHelper from "@/lib/gameLinkHelper";
+import { toast } from "react-toastify";
 
 interface Props {
   game: LoadedGame;
@@ -101,6 +105,54 @@ export const GameItem: React.FC<Props> = ({
               result={result}
               perspectiveUserColor={perspectiveUserColor}
             />
+            
+            {game.url?.includes("www.chess.com") &&
+              <Button variant="contained" onClick={(event) =>
+                {
+                  event.stopPropagation();
+
+                  let siteName: string = "";  
+                  let gameId: string = "";
+                  let username: string = "";
+
+                  if (game.url?.includes("www.chess.com"))
+                  {
+                    siteName = GameOrigin.ChessCom;
+
+                    const splitUrl = game.url?.split("/");
+                    gameId = splitUrl?.at(-1) ?? "";
+                    
+                    switch(perspectiveUserColor)
+                    {
+                      case "white":
+                        username = game.white.name;
+                        break;
+                      case "black":
+                        username = game.black.name;
+                        break; 
+                    }
+
+                    const gameLinkToCopy = GameLinkHelper.generateGameUrl(siteName, gameId, username);
+
+                    navigator.clipboard.writeText(gameLinkToCopy)
+                    .then( () =>
+                    {
+                      toast.success("Successfully copied link", {theme: "dark", autoClose: 2000})
+                    }
+                    )
+                    .catch( err =>
+                    {
+                      toast.warning(`Error copying link: ${err}`)
+                    }
+                    )
+                  }
+
+                  //TODO: Add support for lichess
+                }
+              }>
+                Copy Game Link
+              </Button>
+            }
           </Box>
         }
         secondary={

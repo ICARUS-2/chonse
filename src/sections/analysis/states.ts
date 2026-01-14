@@ -25,3 +25,6 @@ export const engineWorkersNbAtom = atomWithStorage(
 export const evaluationProgressAtom = atom(0);
 
 export const savedEvalsAtom = atom<SavedEvals>({});
+
+//loading game from url
+export const pgnFromUrlAtom = atom("");

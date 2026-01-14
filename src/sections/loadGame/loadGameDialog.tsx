@@ -18,13 +18,13 @@ import {
 } from "@mui/material";
 import { setContext as setSentryContext } from "@sentry/react";
 import { Chess } from "chess.js";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GamePgnInput from "./gamePgnInput";
 import ChessComInput from "./chessComInput";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import LichessInput from "./lichessInput";
-import { useSetAtom } from "jotai";
-import { boardOrientationAtom } from "../analysis/states";
+import { useAtomValue, useSetAtom } from "jotai";
+import { boardOrientationAtom, pgnFromUrlAtom } from "../analysis/states";
 
 interface Props {
   open: boolean;
@@ -85,6 +85,18 @@ export default function NewGameDialog({ open, onClose, setGame }: Props) {
     }
     onClose();
   };
+
+  //HACK TO GET THE GAME TO LOAD FROM URL
+  const pgnFromUrl = useAtomValue(pgnFromUrlAtom);
+  useEffect( () =>
+  {
+    if (pgnFromUrl)
+    {
+      setPgn(pgnFromUrl);
+      handleAddGame(pgnFromUrl);
+    }
+  }, [pgnFromUrl] )
+  //
 
   return (
     <Dialog
