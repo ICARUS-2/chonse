@@ -23,8 +23,11 @@ import GamePgnInput from "./gamePgnInput";
 import ChessComInput from "./chessComInput";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import LichessInput from "./lichessInput";
-import { useAtomValue, useSetAtom } from "jotai";
-import { boardOrientationAtom, pgnFromUrlAtom } from "../analysis/states";
+import { useSetAtom } from "jotai";
+import { boardOrientationAtom } from "../analysis/states";
+import { useRouter } from "next/router";
+import { getChessComUserRecentGames } from "@/lib/chessCom";
+import { LoadedGame } from "@/types/game";
 
 interface Props {
   open: boolean;
@@ -42,6 +45,7 @@ export default function NewGameDialog({ open, onClose, setGame }: Props) {
   const parsingErrorTimeout = useRef<NodeJS.Timeout | null>(null);
   const setBoardOrientation = useSetAtom(boardOrientationAtom);
   const { addGame } = useGameDatabase();
+  const router = useRouter();
 
   const handleAddGame = async (pgn: string, boardOrientation?: boolean) => {
     if (!pgn) return;
@@ -87,15 +91,43 @@ export default function NewGameDialog({ open, onClose, setGame }: Props) {
   };
 
   //HACK TO GET THE GAME TO LOAD FROM URL
-  const pgnFromUrl = useAtomValue(pgnFromUrlAtom);
   useEffect( () =>
   {
-    if (pgnFromUrl)
+    const { site, gameId, username } = router.query;
+    
+    if (!site || !gameId || !username)
     {
-      setPgn(pgnFromUrl);
-      handleAddGame(pgnFromUrl);
+        return;
     }
-  }, [pgnFromUrl] )
+
+    const normalizedUsername = Array.isArray(username) ? username[0] : username;
+    const normalizedGameId = Array.isArray(gameId) ? gameId[0] : gameId;
+    const normalizedSite = Array.isArray(site) ? site[0] : site;
+    let pgnFromUrl = "";
+    if (normalizedSite === "chesscom")
+    {
+        getChessComUserRecentGames(normalizedUsername).then( (result:LoadedGame[]) =>
+        {
+            result.forEach( item =>
+            {
+                const splitUrl = item.url?.split("/");
+                const idFromUrl = splitUrl?.at(-1);
+
+                if (idFromUrl === normalizedGameId)
+                {
+                  pgnFromUrl = item.pgn;
+                  setPgn(pgnFromUrl);
+                  handleAddGame(pgnFromUrl);
+                }
+            }
+              )
+        } )
+    }
+    else
+    {
+        return;
+    }
+  }, [router.isReady] )
   //
 
   return (

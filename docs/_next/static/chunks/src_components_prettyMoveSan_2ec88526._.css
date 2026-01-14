@@ -1,0 +1,25 @@
+/* [project]/src/components/prettyMoveSan/chess_merida_unicode-s.p.ttf (static in css) */
+/* embedded static asset "/chonse/_next/static/media/chess_merida_unicode-s.p.a9dbf90b.ttf" */
+
+/* [project]/src/components/prettyMoveSan/chessfont_ba914efd.module.css [client] (css) */
+@font-face {
+  font-family: chessFont;
+  src: url("../media/chess_merida_unicode-s.p.a9dbf90b.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: chessFont Fallback;
+  src: local(Arial);
+  ascent-override: 79.39%;
+  descent-override: 20.56%;
+  line-gap-override: 0.0%;
+  size-adjust: 100.0%;
+}
+
+.chessfont_ba914efd-module__vqt0bq__className {
+  font-family: chessFont, chessFont Fallback;
+}
+
+
+/*# sourceMappingURL=src_components_prettyMoveSan_2ec88526._.css.map*/

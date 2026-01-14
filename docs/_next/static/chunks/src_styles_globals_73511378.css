@@ -1,0 +1,32 @@
+/* [project]/src/styles/globals.css [client] (css) */
+@keyframes fadeOut {
+  from {
+    opacity: .9;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out-bg {
+  animation: 1s ease-out forwards fadeOut;
+  animation-delay: .5s;
+}
+
+@keyframes checkmateMove {
+  0% {
+    transform: translate(0)scale(1);
+  }
+
+  100% {
+    transform: translate(40%, -40%)scale(.65);
+  }
+}
+
+.move-up-right-shrink {
+  animation: 1s ease-in-out forwards checkmateMove;
+  animation-delay: .5s;
+}
+
+/*# sourceMappingURL=src_styles_globals_73511378.css.map*/

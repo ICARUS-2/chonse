@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/styles/globals.css"],"sourcesContent":["@keyframes fadeOut {\r\n  from {\r\n    opacity: 0.9;\r\n  }\r\n  to {\r\n    opacity: 0;\r\n  }\r\n}\r\n\r\n.fade-out-bg {\r\n  animation: fadeOut 1s ease-out forwards;\r\n  animation-delay: 0.5s;\r\n}\r\n\r\n@keyframes checkmateMove {\r\n  0% {\r\n    transform: translate(0, 0) scale(1);\r\n  }\r\n  100% {\r\n    transform: translate(40%, -40%) scale(0.65); /* moves up-right and shrinks */\r\n  }\r\n}\r\n\r\n.move-up-right-shrink\r\n{\r\n    animation: checkmateMove 1s ease-in-out forwards;\r\n    animation-delay: 0.5s;\r\n}"],"names":[],"mappings":"AAAA;;;;;;;;;;AASA;;;;;AAKA;;;;;;;;;;AASA"}}]
+}

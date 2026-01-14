@@ -6,6 +6,6 @@ export default class GameLinkHelper
     {
         const ORIG: string = window.location.origin;
 
-        return `${ORIG}${BASE_PATH}/load-game/${site}/${username}/${gameId}`;
+        return `${ORIG}${BASE_PATH}/?gameId=${gameId}&username=${username}&site=${site}`;
     }
 }

@@ -1,0 +1,22 @@
+__turbopack_load_page_chunks__("/", [
+  "static/chunks/[root of the server]__da55112f._.js",
+  "static/chunks/node_modules_next_a3465829._.js",
+  "static/chunks/node_modules_react_1cad9b0b._.js",
+  "static/chunks/node_modules_react-dom_cjs_react-dom_development_ab7e073c.js",
+  "static/chunks/node_modules_react-dom_f14d0471._.js",
+  "static/chunks/node_modules_@sentry_core_build_esm_6156449f._.js",
+  "static/chunks/node_modules_@mui_system_esm_7079f90c._.js",
+  "static/chunks/node_modules_@mui_material_Slider_086c47d6._.js",
+  "static/chunks/node_modules_@mui_material_65032124._.js",
+  "static/chunks/node_modules_react-chessboard_dist_index_esm_b1e13077.js",
+  "static/chunks/node_modules_@popperjs_core_lib_525b6336._.js",
+  "static/chunks/node_modules_lodash_3a5db1d8._.js",
+  "static/chunks/node_modules_recharts_es6_d4dc4f48._.js",
+  "static/chunks/node_modules_@emotion_c4540749._.js",
+  "static/chunks/node_modules_@mui_eeba4714._.js",
+  "static/chunks/node_modules_@firebase_20b27be5._.js",
+  "static/chunks/node_modules_b793df9d._.js",
+  "static/chunks/src_components_prettyMoveSan_2ec88526._.css",
+  "static/chunks/src_pages_index_5771e187._.js",
+  "static/chunks/src_pages_index_9de9d2ba._.js"
+])
