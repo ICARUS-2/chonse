@@ -26,5 +26,5 @@ export const evaluationProgressAtom = atom(0);
 
 export const savedEvalsAtom = atom<SavedEvals>({});
 
-export const loadGameSiteAtom = atom("");
-export const loadGameIdAtom = atom("");
+//loading game from url
+export const pgnFromUrlAtom = atom("");
