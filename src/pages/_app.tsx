@@ -6,6 +6,7 @@ import { AppProps } from "next/app";
 import Layout from "@/sections/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "../styles/globals.css";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -14,6 +15,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Layout>
         <Component {...pageProps} />
+        <ToastContainer></ToastContainer>
       </Layout>
     </QueryClientProvider>
   );

@@ -14,6 +14,7 @@ import DateChip from "./dateChip";
 import GameResultChip from "./gameResultChip";
 import { GameOrigin } from "@/types/enums";
 import GameLinkHelper from "@/lib/gameLinkHelper";
+import { toast } from "react-toastify";
 
 interface Props {
   game: LoadedGame;
@@ -31,8 +32,6 @@ export const GameItem: React.FC<Props> = ({
 
   const whiteWon = result === "1-0";
   const blackWon = result === "0-1";
-
-  console.log(game);
 
   return (
     <ListItem
@@ -134,7 +133,18 @@ export const GameItem: React.FC<Props> = ({
                     }
 
                     const gameLinkToCopy = GameLinkHelper.generateGameUrl(siteName, gameId, username);
-                    alert(gameLinkToCopy);
+
+                    navigator.clipboard.writeText(gameLinkToCopy)
+                    .then( () =>
+                    {
+                      toast.success("Successfully copied link", {theme: "dark", autoClose: 2000})
+                    }
+                    )
+                    .catch( err =>
+                    {
+                      toast.warning(`Error copying link: ${err}`)
+                    }
+                    )
                   }
 
                   //TODO: Add support for lichess

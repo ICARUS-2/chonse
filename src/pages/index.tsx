@@ -13,7 +13,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import EngineSettingsButton from "@/sections/engineSettings/engineSettingsButton";
