@@ -11,7 +11,7 @@ import { CLASSIFICATION_COLORS } from "@/constants";
 import { boardHueAtom } from "./states";
 
 //For game end markers
-import { boardAtom } from "@/sections/analysis/states";
+import { boardAtom} from "@/sections/analysis/states";
 import { Color } from "@/types/enums";
 import EndIcon from "./endIcon";
 import { BASE_PATH } from "@/globals";
@@ -94,7 +94,7 @@ export function getSquareRenderer({
           )}
 
           {/*Renders white king corresponding icon in the event of checkmate*/}
-          {board.isCheckmate() && square === whiteKing && (
+          {moveClassification && board.isCheckmate() && square === whiteKing && (
             <EndIcon 
               iconSrc={board.turn() === Color.White ? `${BASE_PATH}/icons/checkmate.webp` : `${BASE_PATH}/icons/winner.webp`} 
               backgroundColor={board.turn() === Color.White ? "red" : "limegreen"} 
@@ -102,7 +102,7 @@ export function getSquareRenderer({
           )}
 
           {/*Renders black king corresponding icon in the event of checkmate*/}
-          {board.isCheckmate() && square === blackKing && (
+          {moveClassification && board.isCheckmate() && square === blackKing && (
             <EndIcon 
               iconSrc={board.turn() === Color.Black ? `${BASE_PATH}/icons/checkmate.webp` : `${BASE_PATH}/icons/winner.webp`} 
               backgroundColor={board.turn() === Color.Black ? "red" : "limegreen"} 
@@ -110,7 +110,7 @@ export function getSquareRenderer({
           )}
 
           {/*Renders kings corresponding icon in the event of a draw*/}
-          {board.isDraw() && (square === blackKing || square === whiteKing) &&
+          {moveClassification && board.isDraw() && (square === blackKing || square === whiteKing) &&
             <EndIcon 
               iconSrc={`${BASE_PATH}/icons/draw.webp`}
               backgroundColor="skyblue"
