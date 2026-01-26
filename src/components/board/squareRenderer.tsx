@@ -94,7 +94,7 @@ export function getSquareRenderer({
           )}
 
           {/*Renders white king corresponding icon in the event of checkmate*/}
-          {moveClassification && board.isCheckmate() && square === whiteKing && (
+          {showPlayerMoveIcon && board.isCheckmate() && square === whiteKing && (
             <EndIcon 
               iconSrc={board.turn() === Color.White ? `${BASE_PATH}/icons/checkmate.webp` : `${BASE_PATH}/icons/winner.webp`} 
               backgroundColor={board.turn() === Color.White ? "red" : "limegreen"} 
@@ -102,7 +102,7 @@ export function getSquareRenderer({
           )}
 
           {/*Renders black king corresponding icon in the event of checkmate*/}
-          {moveClassification && board.isCheckmate() && square === blackKing && (
+          {showPlayerMoveIcon && board.isCheckmate() && square === blackKing && (
             <EndIcon 
               iconSrc={board.turn() === Color.Black ? `${BASE_PATH}/icons/checkmate.webp` : `${BASE_PATH}/icons/winner.webp`} 
               backgroundColor={board.turn() === Color.Black ? "red" : "limegreen"} 
@@ -110,7 +110,7 @@ export function getSquareRenderer({
           )}
 
           {/*Renders kings corresponding icon in the event of a draw*/}
-          {moveClassification && board.isDraw() && (square === blackKing || square === whiteKing) &&
+          {showPlayerMoveIcon && board.isDraw() && (square === blackKing || square === whiteKing) &&
             <EndIcon 
               iconSrc={`${BASE_PATH}/icons/draw.webp`}
               backgroundColor="skyblue"
