@@ -4,6 +4,7 @@ import { Stockfish16 } from "./stockfish16";
 import { Stockfish16_1 } from "./stockfish16_1";
 import { Stockfish17 } from "./stockfish17";
 import { Stockfish17_1 } from "./stockfish17_1";
+import { Stockfish18Lite } from "./stockfish18";
 
 
 export const isWasmSupported = () =>
@@ -27,6 +28,8 @@ export const isMobileDevice = () =>
 
 export const isEngineSupported = (name: EngineName): boolean => {
   switch (name) {
+    case EngineName.Stockfish18_Lite:
+      return Stockfish18Lite.isSupported();
     case EngineName.Stockfish17_1:
     case EngineName.Stockfish17_1Lite:
       return Stockfish17_1.isSupported();

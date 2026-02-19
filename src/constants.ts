@@ -16,14 +16,19 @@ export const CLASSIFICATION_COLORS: Record<MoveClassification, string> = {
   [MoveClassification.Blunder]: "#df5353",
 };
 
-export const DEFAULT_ENGINE: EngineName = EngineName.Stockfish17_1Lite;
+export const DEFAULT_ENGINE: EngineName = EngineName.Stockfish18_Lite;
 export const STRONGEST_ENGINE: EngineName = EngineName.Stockfish17_1;
 
 export const ENGINE_LABELS: Record<
   EngineName,
   { small: string; full: string; sizeMb: number }
 > = {
-  //LATEST EXPERIMENTAL
+  [EngineName.Stockfish18_Lite]: {
+    full: "Stockfish 18 Lite (7MB)",
+    small: "Stockfish 18 LIte",
+    sizeMb: 7
+  },
+
   [EngineName.Stockfish17_1]: {
     full: "Stockfish 17.1 (77MB)",
     small: "Stockfish 17.1",

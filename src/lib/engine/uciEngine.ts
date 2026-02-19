@@ -338,6 +338,8 @@ export class UciEngine {
     depth = 16,
     workersNb: number
   ): Promise<PositionEval> {
+    
+    
     if (workersNb < 2) {
       const lichessEval = await getLichessEval(fen, this.multiPv);
       if (
@@ -377,6 +379,7 @@ export class UciEngine {
 
     console.log(`Evaluating position: ${fen}`);
 
+    
     const lichessEval = await lichessEvalPromise;
     if (
       lichessEval.lines.length >= multiPv &&
