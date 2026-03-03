@@ -11,6 +11,7 @@ import NavLink from "@/components/NavLink";
 import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import { BASE_PATH } from "@/globals";
+import { Alert, Link } from "@mui/material";
 
 interface Props {
   darkMode: boolean;
@@ -77,7 +78,11 @@ export default function NavBar({ darkMode, switchDarkMode }: Props) {
                 fontSize: { xs: "1rem", sm: "1.25rem" },
               }}
             >
-              CHONSE
+              <div style={{"display": "flex", "alignItems": "center"}}>              
+              <p style={{marginRight: "10px"}}>CHONSE</p>  
+              <Alert severity="warning">This fork is no longer maintained - Use <Link href="https://icarus-2.github.io/chonse2" color="inherit">https://icarus-2.github.io/chonse2</Link> instead</Alert>
+              </div>
+
             </Typography>
           </NavLink>
 
