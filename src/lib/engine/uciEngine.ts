@@ -11,7 +11,7 @@ import {
 } from "./helpers/parseResults";
 import { computeAccuracy } from "./helpers/accuracy";
 import { getIsStalemate, getWhoIsCheckmated } from "../chess";
-import { getLichessEval } from "../lichess";
+//import { getLichessEval } from "../lichess";
 import { getMovesClassification } from "./helpers/moveClassification";
 import { computeEstimatedElo } from "./helpers/estimateElo";
 import { EngineWorker, WorkerJob } from "@/types/engine";
@@ -300,7 +300,7 @@ export class UciEngine {
           return;
         }
 
-        const result = await this.evaluatePosition(fen, depth, workersNb);
+        const result = await this.evaluatePosition(fen, depth, /*workersNb*/);
         updateEval(i, result);
       })
     );
@@ -336,10 +336,10 @@ export class UciEngine {
   private async evaluatePosition(
     fen: string,
     depth = 16,
-    workersNb: number
+    //workersNb: number
   ): Promise<PositionEval> {
     
-    
+    /*
     if (workersNb < 2) {
       const lichessEval = await getLichessEval(fen, this.multiPv);
       if (
@@ -348,7 +348,7 @@ export class UciEngine {
       ) {
         return lichessEval;
       }
-    }
+    }*/
 
     const results = await this.sendCommands(
       [`position fen ${fen}`, `go depth ${depth}`],
@@ -366,7 +366,7 @@ export class UciEngine {
   }: EvaluatePositionWithUpdateParams): Promise<PositionEval> {
     this.throwErrorIfNotReady();
 
-    const lichessEvalPromise = getLichessEval(fen, multiPv);
+    //const lichessEvalPromise = getLichessEval(fen, multiPv);
 
     await this.stopAllCurrentJobs();
     await this.setMultiPv(multiPv);
@@ -379,7 +379,7 @@ export class UciEngine {
 
     console.log(`Evaluating position: ${fen}`);
 
-    
+    /*
     const lichessEval = await lichessEvalPromise;
     if (
       lichessEval.lines.length >= multiPv &&
@@ -387,7 +387,7 @@ export class UciEngine {
     ) {
       setPartialEval?.(lichessEval);
       return lichessEval;
-    }
+    }*/
 
     const results = await this.sendCommands(
       [`position fen ${fen}`, `go depth ${depth}`],
